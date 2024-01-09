@@ -1,5 +1,4 @@
-const audio = document.getElementById('myAudio');
-
+const audio = document.getElementById('crabRave');
 function playMusic() {
   audio.play();
 }

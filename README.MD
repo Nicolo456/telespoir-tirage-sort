@@ -1,5 +1,8 @@
 # Tirage au sort
 
+> [!WARNING]
+> Il faut autoriser la lecture automatique de musique pour le site (paramètre)
+
 ## Cahier des charges:
 >Faire un outil de tirage au sort qu’on puisse projeter pour la tomPotla (il s’agit de la tombola organisée pendant le pot Télespoir du 19/01)
 >
