@@ -1,8 +1,7 @@
-const end = Date.now() + 20 * 1000;
-var is_homeScreen = true;
+import {state} from "./script.js"; // c'est un link et non pas une copie de la variable
 
-(function confetti_homeScreen() {
-  confetti({
+export function confetti_homeScreen() {
+    confetti({
     particleCount: 2,
     angle: 50,
     spread: 55,
@@ -17,8 +16,7 @@ var is_homeScreen = true;
     startVelocity: 40,
     origin: { x: 1, y:0.7  },
   });
-
-
-  if (is_homeScreen) {requestAnimationFrame(confetti_homeScreen);}
-
-})();
+  if (state == "homeScreen") {
+    requestAnimationFrame(confetti_homeScreen);
+  }
+}

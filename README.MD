@@ -20,7 +20,7 @@ La colonne vainqueur sera complété par le script avec les noms des participant
 
 
 ## TODO
-- [ ] crée les bases du site
+- [x] crée les bases du site
 - [ ] définir une animation de victoire simple
 - [ ] mettre des boutons pour relancer un lot (change le vainqueur)
 - [ ] mettre des boutons pour relancer une animation (ne change pas le vainqueur)

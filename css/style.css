@@ -24,6 +24,7 @@ body {
 }
 
 h1 {
+    position: static;
     font-size: 8vw;
     text-align: center;
     white-space: nowrap;
@@ -58,7 +59,7 @@ h1 {
     z-index: 1; /* Empilement en arrière par rapport à element1 */
 }
 
-button {
+#start {
     position: absolute;
     top: 50%; /* Centrage vertical */
     left: 50%; /* Centrage horizontal */
@@ -77,6 +78,6 @@ button {
     transition: background-color 0.1s ease; /* Animation au survol */
 }
 
-button:hover {
+#start:hover {
     background-color: #8092b8; /* Nouvelle couleur de fond au survol */
 }

@@ -1,16 +1,23 @@
-import {run_homeScreen, quit_homeScreen} from "./home_screen.js";
-import {run_wheel} from "./wheel.js";
+const audio = document.getElementById('crabRave');
+function playMusic() {
+  audio.play();
+}
+function pauseMusic() {
+  audio.pause();
+}
 
-export let state = "homeScreen";
-run_homeScreen();
+// Mise en place du JS
+var state = "homeScreen";
+run_hs();
 
+// Récupération du bouton par son ID
 var bouton = document.querySelector("#start");
+
 // Ajout d'un gestionnaire d'événement au clic sur le bouton
 bouton.addEventListener("click", function() {
     switch (state) {
         case "homeScreen":
             state = "wheel";
-            quit_homeScreen();
             run_wheel();
         case "wheel":
             state = "result";
