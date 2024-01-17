@@ -5,24 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tirage au sort</title>
     <link rel="stylesheet" href="css/style.css"/>
+    <link rel="icon" href="images/telespoir.ico" type="image/x-icon"> <!-- favicon -->
 </head>
 <body>
+    <div id="root"> </div>
     <audio id="crabRave" src="sounds/Noisestorm - Crab Rave.mp3"></audio>
     <div class="homeScreen">
-        <div class="wrapper">
-            <h1 id="description">Tirage au sort</h1>
-            <img src="images/logo-telespoir.jpg" alt="logo de l'association Téléspoir" id="logo">
+        <div class="homeScreenContainer">
+            <h1 id="title">Tirage au sort</h1>
+            <img src="images/logo-telespoir.png" alt="logo de l'association Téléspoir" id="logo">
             
         </div>
+
+        <div class="continue">
+            <button id="btnStart">Commencer</button>
+            <img src="images/tropical_leaf.png" alt="feuille tropical" id="leaf">
+        </div>
     </div>
-    <div class="continue">
-        <button id="start">Commencer</button>
-        <img src="images/tropical_leaf.jpg" alt="feuille tropical" id="leaf">
+
+    <div class="wheelContainer">
+        <div id="spinBtn">Spin</div>
+        <div id="wheel"></div>
     </div>
-</body>
+    <div class= "resultContainer">
+        <div id="leafs"></div>
+        <div id="winner"></div>
+        <div id="btnContinue"></div>
+    </div>
+<!-- To load React add the scripts. --> 
+<script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script> 
+<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script> 
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3.0.3/tsparticles.confetti.bundle.min.js"></script>
+<script src="js/sky.js" type = "text/jsx"></script>
 <script type="module" src="js/script.js"></script>
+</body>
 
 </html>

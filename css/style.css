@@ -6,16 +6,58 @@ body {
     -moz-user-select: none; /* Firefox */
     -ms-user-select: none; /* Internet Explorer/Edge */
     user-select: none; /* Non-préfixé */
+
+    background: linear-gradient(to right, #ff47a1 0%, #ff9f4d 100%);
 }
 
+#confetti canvas {
+    z-index: 2;
+}
+  
+#sky {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+#shootingstars {
+    margin: 0;
+    padding: 0;
+    width: 150vh;
+    height: 100vw;
+    position: fixed;
+    overflow: hidden;
+    transform: translatex(calc(50vw - 50%)) translatey(calc(50vh - 50%))
+    rotate(120deg);
+}
+
+.wish {
+    height: 2px;
+    top: 300px;
+    width: 100px;
+    margin: 0;
+    opacity: 0;
+    padding: 0;
+    background-color: white;
+    position: absolute;
+    background: linear-gradient(-45deg, white, rgba(0, 0, 255, 0));
+    filter: drop-shadow(0 0 6px white);
+    overflow: hidden;
+}
+
+  
 .homeScreen {
+    position: absolute;
     display: flex;
     justify-content: center; /* Centrer horizontalement */
     align-items: center; /* Centrer verticalement */
     height: 100vh; /* Ajustez la hauteur selon vos besoins */
 }
 
-.wrapper {
+.homeScreenContainer {
     display: grid;
     grid-template-columns: 3fr 1fr;
     align-items: center; /* Centrer verticalement */
@@ -28,12 +70,16 @@ h1 {
     font-size: 8vw;
     text-align: center;
     white-space: nowrap;
+    z-index: 1;
+    color: #273071;
+    text-shadow: -3px 5px rgba(127,147,182,0.3);
 }
 
 #logo {
     min-width: 100px; /* Largeur minimale de 200 pixels */
     width: 100%; /* prendra la largeur complète du conteneur parent */
     height: auto; /* ajuste automatiquement la hauteur pour préserver les proportions */
+    z-index: 1;
 }
 
 .continue {
@@ -48,7 +94,7 @@ h1 {
     max-height: 20%;
 }
 
-#leaf {
+.continue #leaf {
     position: absolute;
     top: 50%; /* Centrage vertical */
     left: 50%; /* Centrage horizontal */
@@ -59,14 +105,13 @@ h1 {
     z-index: 1; /* Empilement en arrière par rapport à element1 */
 }
 
-#start {
+.continue #btnStart {
     position: absolute;
     top: 50%; /* Centrage vertical */
     left: 50%; /* Centrage horizontal */
     width: auto;
     transform: translate(-50%, -50%); /* Décalage de moitié de la taille du bouton */
-    z-index: 2; /* Empilement en avant par rapport à element2 */
-
+    z-index: 2;
     background-color: #273071; /* Couleur de fond */
     color: white; /* Couleur du texte */
     padding: 10px 20px; /* Espacement interne */
@@ -78,6 +123,91 @@ h1 {
     transition: background-color 0.1s ease; /* Animation au survol */
 }
 
-#start:hover {
+.continue #btnStart:hover {
     background-color: #8092b8; /* Nouvelle couleur de fond au survol */
 }
+
+.wheelContainer {
+    position: absolute; /* La position est gerée dans wheel.js */
+    width: 80vw;
+    height: 80vw;
+    justify-content: center;
+    align-items: center;
+    display: none;
+    z-index: 101;
+}
+.wheelContainer #spinBtn {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background: #fff;
+    border-radius: 50%;
+    z-index: 103;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: #333;
+    letter-spacing: 0.1em;
+    border: 4px solid rbga(0,0,0,0.75);
+    cursor: pointer;
+    box-shadow: 0 0 0 7px #333;
+}
+
+.wheelContainer #spinBtn::before
+{
+    content: '';
+    position: absolute;
+    top: -48px;
+    width: 25px;
+    height: 42px;
+    background: #333;
+    clip-path: polygon(50% 0%, 15% 100%, 85% 100%);
+}
+
+.wheelContainer #wheel
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #333;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 0 0 5px #333,
+    0 0 0 15px #fff,
+    0 0 0 18px #111;
+}
+
+.wheelContainer #wheel .slot
+{
+    position: absolute;
+    width: 50%;
+    height: 50%; /* changer en fonction du nombre totale, la ca marche pas */
+    transform-origin: bottom right;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.wheelContainer #wheel .slot span 
+{
+    position: relative;
+    transform: rotate(45deg);
+    font-size: 2em;
+    font-weight: 700;
+    color: #fff;
+    text-shadow: 3px 5px 2px rgba(0,0,0,0.15);
+}
+
+.resultContainer {
+    position: absolute;
+    display: flex;
+    justify-content: center; /* Centrer horizontalement */
+    align-items: center; /* Centrer verticalement */
+    height: 100vh; /* Ajustez la hauteur selon vos besoins */
+}
+

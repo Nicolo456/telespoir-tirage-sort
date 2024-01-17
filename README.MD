@@ -11,9 +11,9 @@
 >on souhaite gérer surtout la partie tirage au sort avec animation, sachant qu’il  peut y avoir plusieurs vainqueurs et ça serait bien de les garder affichés tout en tirant les uns après les autres
 
 ## Description pratique
-Le programme accepte 2 bases de données (format JSON):
-- Une base de données avec les noms des participants (sur une colonne) => "participants.json"
-- Une base de données avec les différents lots (nom du lot, nombre disponible, importance du lot, chemin vers l'image, vainqueurs) => "lots.json"
+Il faut enregistrer les participants et les lots dans le fichier data.js (c'est pas pratique oui mais j'ai pas réussi autrement).
+- La liste partcipants accepte les noms des partcipants
+- Pour les lots on a: nom du lot, nombre disponible, importance du lot, chemin vers l'image, vainqueurs
 
 L'importance du lot définit quelle sera le niveau d'animation. Un petit lot (3) ne va pas provoquer la même attente qu'un grand lot (1). Pour lancer le lot 1: gros bouton rouge
 La colonne vainqueur sera complété par le script avec les noms des participants qui ont gagné le lot.

@@ -1,0 +1,1 @@
+export let participants = ["Nicodème", "Marie", "Papa", "maman", "Bastien", "Ninou",'Louis','Kilian','Cyprien']
