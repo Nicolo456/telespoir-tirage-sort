@@ -54,7 +54,7 @@ export function show_result(winnerName) {
         opacity: [0,1],
         translateY: [`-50px`,'0px'],
         duration: 1000, // durée de l'animation en millisecondes
-        delay:2000,
+        delay:1000,
         easing: 'easeOutQuad'
     })
 }
@@ -84,7 +84,7 @@ export function quit_result() {
         targets: '.resultText',
         opacity: [1,0],
         translateY: [`0px`,'50px'],
-        duration: 1000, // durée de l'animation en millisecondes
+        duration: 500, // durée de l'animation en millisecondes
         delay:500,
         easing: 'easeInQuad',
         complete: function(anim) {

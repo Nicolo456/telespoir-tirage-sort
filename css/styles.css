@@ -1,0 +1,6 @@
+/* Including css file into this */
+@import "button.css";
+@import "global.css";
+@import "homeScreen.css";
+@import "wheel.css";
+@import "results.css";
