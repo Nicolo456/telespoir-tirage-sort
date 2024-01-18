@@ -24,28 +24,28 @@ export function confetti_homeScreen() {
 export function confetti_wheel(wheelSpeed) {
     if (wheelSpeed > 0) {
         confetti({
-            particleCount: Math.floor(wheelSpeed*0.3),
+            particleCount: Math.floor(wheelSpeed*0.1),
             angle: 70,
             spread: 20,
             startVelocity: wheelSpeed*3,
             origin: { x: 0.2, y:0.60 },
         });
         confetti({
-            particleCount: Math.floor(wheelSpeed),
+            particleCount: Math.floor(wheelSpeed*0.5),
             angle: 50,
             spread: 40,
             startVelocity: wheelSpeed*6,
             origin: { x: 0.3, y:0.40 },
         });
         confetti({
-            particleCount: Math.floor(wheelSpeed*0.3),
+            particleCount: Math.floor(wheelSpeed*0.1),
             angle: 0,
             spread: 20,
             startVelocity: wheelSpeed*3,
             origin: { x: 0.6, y:0.10 },
         });
         confetti({
-            particleCount: Math.floor(wheelSpeed*1.5),
+            particleCount: Math.floor(wheelSpeed*0.7),
             angle: -20,
             spread: 20,
             startVelocity: wheelSpeed*10,
