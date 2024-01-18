@@ -72,11 +72,11 @@ export function run_wheel() {
         left: `${(widthViewport- wheelContainer_width)/2}px`,
         rotate: '0deg',
         spinValue: 0,
-        complete: function(anim) {
-            wheelContainer.style.display = "flex";
-        }
+        endDelay: 1000,
     }).add({ // Animation d'arrivé
-        delay: 1000,
+        begin: function(anim) {
+            wheelContainer.style.display = "flex";
+        },
         targets: ".wheelContainer",
         translateY: [`${heightViewport}px`,'0'],
         duration: 2000, // durée de l'animation en millisecondes
