@@ -66,7 +66,7 @@ export function confetti_result() {
     const interval = setInterval(function() {
     const timeLeft = animationEnd - Date.now();
 
-    if (timeLeft <= 0) {
+    if (timeLeft <= 0 || !(state == "result")) {
         return clearInterval(interval);
     }
 

@@ -60,5 +60,42 @@ export function show_result(winnerName) {
 }
 
 export function quit_result() {
-    return true;
+    var otherFinish = false;
+    anime({
+        targets: '.leaf',
+        opacity: [1,0],
+        width: '*=0.1',
+        height: '*=0.1',
+        rotate: {value: `+=${(Math.random-0.5) *5}deg`, duration: 4000},
+        duration: (Math.random()+Math.random()+2)*700, // durée de l'animation en millisecondes
+        easing: 'easeOutQuad',
+        delay: anime.stagger(Math.random()*20),
+        complete: function(anim) {
+            document.querySelectorAll('.leaf').forEach(leaf => {leaf.remove()});
+            if (otherFinish) {
+                document.querySelector('.resultContainer').style.display = 'none';
+                otherFinish = false; // Reset pour prochaine fois
+            } else {
+                otherFinish = true;
+            }
+        }
+    });
+    anime({
+        targets: '.resultText',
+        opacity: [1,0],
+        translateY: [`0px`,'50px'],
+        duration: 1000, // durée de l'animation en millisecondes
+        delay:500,
+        easing: 'easeInQuad',
+        complete: function(anim) {
+            document.querySelector('.resultText').remove();
+            if (otherFinish) {
+                document.querySelector('.resultContainer').style.display = 'none';
+                otherFinish = false; // Reset pour prochaine fois
+                canSpin = true;
+            } else {
+                otherFinish = true;
+            }
+        }
+    })
 }

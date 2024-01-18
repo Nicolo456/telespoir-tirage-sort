@@ -19,8 +19,9 @@ export function run_wheel() {
     let rotation_pos = {'pred':0, 'actual':0};
 
     spinBtn.onclick = function() {
+        console.log("essaye de tourner la roue")
         if (canSpin) {
-            canSpin = false;
+            canSpin = false; // result le remet opérationnel
             spinValue += Math.ceil(1000 + ((Math.random()-0.2) * 720));
 
             anime({
@@ -43,8 +44,8 @@ export function run_wheel() {
                 confetti_wheel(rotation_pos.actual - rotation_pos.pred);
             },
             complete: function(anim) {
-                canSpin = true;
                 winner = get_winner(spinValue, nb_slots);
+                canSpin = true;
                 console.log(winner);
                 show_result(winner);
             }
