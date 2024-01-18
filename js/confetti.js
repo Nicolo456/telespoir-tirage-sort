@@ -1,4 +1,6 @@
-import {state} from "./script.js"; // c'est un link et non pas une copie de la variable
+import {sleep} from "./script.js";
+
+let state = document.querySelector('#state')
 
 export function confetti_homeScreen() {
     confetti({
@@ -16,42 +18,31 @@ export function confetti_homeScreen() {
     startVelocity: 40,
     origin: { x: 1, y:0.7  },
   });
-  if (state == "homeScreen") {
+  if (state.value == "homeScreen") {
     requestAnimationFrame(confetti_homeScreen);
   }
 }
 
-export function confetti_wheel(wheelSpeed) {
-    if (wheelSpeed > 0) {
-        confetti({
-            particleCount: Math.floor(wheelSpeed*0.1),
-            angle: 70,
-            spread: 20,
-            startVelocity: wheelSpeed*3,
-            origin: { x: 0.2, y:0.60 },
-        });
-        confetti({
-            particleCount: Math.floor(wheelSpeed*0.5),
-            angle: 50,
-            spread: 40,
-            startVelocity: wheelSpeed*6,
-            origin: { x: 0.3, y:0.40 },
-        });
-        confetti({
-            particleCount: Math.floor(wheelSpeed*0.1),
-            angle: 0,
-            spread: 20,
-            startVelocity: wheelSpeed*3,
-            origin: { x: 0.6, y:0.10 },
-        });
-        confetti({
-            particleCount: Math.floor(wheelSpeed*0.7),
-            angle: -20,
-            spread: 20,
-            startVelocity: wheelSpeed*10,
-            origin: { x: 0.6, y:0.25 },
-        });
+export function confetti_wheel(duration, time_sleep) { //en ms
+    sleep(time_sleep);
+
+    const animationEnd = Date.now() + duration;
+
+    const interval = setInterval(function() {
+    if (animationEnd - Date.now() <= 0) {
+        return clearInterval(interval);
     }
+
+    confetti({
+        particleCount: (animationEnd - Date.now())/duration*20,
+        ticks: 1000, 
+        zIndex: 0,
+        angle: 10,
+        spread: 50,
+        startVelocity: 80,
+        origin: { x: 0.3, y:0.50 },
+    });
+    }, 100);
 }
 
 export function confetti_result() {

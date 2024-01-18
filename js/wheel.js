@@ -2,6 +2,8 @@ import {confetti_wheel} from "./confetti.js";
 import { participants } from "../data.js";
 import { show_result } from "./result.js";
 
+let state = document.querySelector('#state')
+
 // EXPLANATION
 
 // On fait toujours une roue avec 32 emplacements
@@ -16,36 +18,23 @@ export function run_wheel() {
     let canSpin = false;
     let winner;
     const nb_slots = 32;
-    let rotation_pos = {'pred':0, 'actual':0};
 
     spinBtn.onclick = function() {
         console.log("essaye de tourner la roue")
         if (canSpin) {
+            //confetti_wheel(7000,1000)
             canSpin = false; // result le remet opérationnel
             spinValue += Math.ceil(1000 + ((Math.random()-0.2) * 720));
 
             anime({
             targets: "#wheel",
             rotate: `${spinValue}deg`,
-
-            duration: 10000, // durée de l'animation en millisecondes
+            duration: 1, // durée de l'animation en millisecondes
             easing: 'cubicBezier(0.250, -0.135, 0.395, 1.085)',
-            update: function(anim) {
-                // Obtenir la matrice de transformation
-                var style = window.getComputedStyle(wheel);
-                var transformMatrix = style.getPropertyValue('transform');
-
-                // Extraire la rotation de la matrice
-                var values = transformMatrix.split('(')[1].split(')')[0].split(',');
-                var rotation = Math.round(Math.atan2(values[1], values[0]) * (180/Math.PI));
-
-                rotation_pos.pred = rotation_pos.actual;
-                rotation_pos.actual = rotation;
-                confetti_wheel(rotation_pos.actual - rotation_pos.pred);
-            },
             complete: function(anim) {
                 winner = get_winner(spinValue, nb_slots);
                 canSpin = true;
+                state.value = "result";
                 console.log(winner);
                 show_result(winner);
             }

@@ -12,17 +12,37 @@
     position: absolute;
 }
 
+.resultContainer #winner {
+    display: flex;
+    align-items: center; /* Centrer verticalement */
+    justify-content: center;
+    flex-direction: column;
+    z-index: 300;
+}
+
 .resultContainer #winner p {
     position: relative;
     font-size: 6vw;
     font-weight: 700;
     text-align: center;
     white-space: nowrap;
-    z-index: 300;
     color: rgb(255, 255, 255);
     text-shadow: -3px 5px rgba(39, 48, 113,0.3);
 }
 
-.resultContainer .winner #btnContinue {
-    z-index: 300;
+.resultContainer #winner #btnContinue {
+    width: fit-content;
+    background-color: #273071; /* Couleur de fond */
+    color: white; /* Couleur du texte */
+    padding: 10px 20px; /* Espacement interne */
+    border: none; /* Retirer la bordure */
+    border-radius: 5px; /* Coins arrondis */
+    font-size: 16px; /* Taille de police */
+    cursor: pointer; /* Curseur au survol */
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Ombre */
+    transition: background-color 0.1s ease; /* Animation au survol */ 
+}
+
+.resultContainer #winner #btnContinue:hover {
+    background-color: #8092b8; /* Nouvelle couleur de fond au survol */
 }

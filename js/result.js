@@ -36,7 +36,7 @@ export function show_result(winnerName) {
             opacity: [0,1],
             width: `${size}vw`,
             height: `${size*rapport}vw`,
-            rotate: {value: `+=${(Math.random-0.5) *5}deg`, duration: 4000},
+            rotate: {value: `+=${(Math.random-0.5) *20}deg`, duration: 4000},
             duration: (Math.random()+Math.random()+2)*700, // durée de l'animation en millisecondes
             easing: 'easeOutQuad',
             delay: Math.random()*20 * i,
@@ -44,13 +44,14 @@ export function show_result(winnerName) {
     }
     confetti_result();
 
+    let btnContinue = document.querySelector("#btnContinue");
     let text = document.createElement("p");
     text.classList.add("resultText");
     text.innerHTML = `Le gagnant est ${winnerName}! <br> Bravo et merci!`;
-    document.querySelector(".resultContainer #winner").appendChild(text);
+    document.querySelector(".resultContainer #winner").insertBefore(text, btnContinue);
 
     anime({
-        targets: text,
+        targets: '#winner',
         opacity: [0,1],
         translateY: [`-50px`,'0px'],
         duration: 1000, // durée de l'animation en millisecondes
@@ -81,7 +82,7 @@ export function quit_result() {
         }
     });
     anime({
-        targets: '.resultText',
+        targets: '#winner',
         opacity: [1,0],
         translateY: [`0px`,'50px'],
         duration: 500, // durée de l'animation en millisecondes
