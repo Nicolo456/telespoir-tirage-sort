@@ -54,7 +54,7 @@ export function confetti_wheel(wheelSpeed) {
     }
 }
 
-export function confetti_result(wheelSpeed) {
+export function confetti_result() {
     const duration = 15 * 1000,
     animationEnd = Date.now() + duration,
     defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };

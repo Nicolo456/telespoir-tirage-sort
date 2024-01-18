@@ -13,8 +13,7 @@ function changeState() {
             state = "wheel";
             quit_homeScreen();
             run_wheel();
-        case "result":
-            state = "wheel";
+        case "wheel":
             quit_result();
     }
 }

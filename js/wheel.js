@@ -1,5 +1,6 @@
 import {confetti_wheel} from "./confetti.js";
 import { participants } from "../data.js";
+import { show_result } from "./result.js";
 
 // EXPLANATION
 
@@ -52,13 +53,11 @@ export function run_wheel() {
     }
 
     // Mise en place du wheelContainer
-    wheelContainer.style.opacity = 0;
-    wheelContainer.style.display = "flex";
     const rapport_utilisation_angle = 0.92;
-    const wheelContainer_height = wheelContainer.offsetHeight;
-    const wheelContainer_width = wheelContainer.offsetWidth;
     const heightViewport = window.innerHeight;
     const widthViewport = window.innerWidth;
+    const wheelContainer_height = 0.80 * widthViewport;
+    const wheelContainer_width = 0.80 * widthViewport;
 
     make_wheel_slot(participants,rapport_utilisation_angle, nb_slots);
 
@@ -73,7 +72,7 @@ export function run_wheel() {
         rotate: '0deg',
         spinValue: 0,
         complete: function(anim) {
-            wheelContainer.style.opacity = 1;
+            wheelContainer.style.display = "flex";
         }
     }).add({ // Animation d'arrivé
         delay: 1000,
@@ -92,40 +91,6 @@ function get_winner(value, nb_slots) {
     const i_winner = 32+Math.floor(((-value+45+angle_per_slot/2) % 360) / angle_per_slot); // Ca tourne à l'envers (trigo), de base décalé dans le sens trigo de 45+angle_per_slot/2
     const winner_span = document.querySelector(".wheelContainer #wheel .slot:nth-child(" + (i_winner + 1) + ") span");
     return winner_span.innerText;
-}
-
-function show_result(winnerName) {
-    const nb_leafs = 10;
-    const center = [window.innerWidth/2,window.innerHeight/2]
-
-    for (let i = 0; i < nb_leafs; i++) {
-        const leaf = document.createElement("img");
-        leaf.classList.add("leaf");
-        leaf.style.transform = `rotate(${(360/nb_leafs)*i}deg)`;
-        leaf.style.top = `${center[1] - 100}px`;
-        leaf.style.left = `${center[0] - 100}px`;
-        leaf.style.opacity = 0;
-        wheelContainer.appendChild(leaf);
-        anime({
-            targets: leaf,
-            opacity: [
-                {
-                value: 0
-                },
-                {
-                value: 1
-                }
-            ],
-            duration: 1000, // durée de l'animation en millisecondes
-            easing: 'easeOutQuad',
-            delay: 1000 * i,
-            complete: function(anim) {
-                wheelContainer.removeChild(leaf);
-            }
-        });
-    }
-
-
 }
 
 function make_wheel_slot(participant, rapport_utilisation_angle, nb_slots) {
