@@ -55,7 +55,7 @@ export function confetti_wheel(wheelSpeed) {
 }
 
 export function confetti_result() {
-    const duration = 15 * 1000,
+    const duration = 10 * 1000,
     animationEnd = Date.now() + duration,
     defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
 
@@ -66,7 +66,7 @@ export function confetti_result() {
     const interval = setInterval(function() {
     const timeLeft = animationEnd - Date.now();
 
-    if (timeLeft <= 0 || !(state == "result")) {
+    if (timeLeft <= 0) {
         return clearInterval(interval);
     }
 
