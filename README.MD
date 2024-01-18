@@ -1,7 +1,9 @@
 # Tirage au sort
 
-> [!WARNING]
-> Il faut autoriser la lecture automatique de musique pour le site (paramètre)
+> [!TIP]
+> Pour l'utiliser, il faut lancer un server local (index.html comme main). Pour ca, 2 propositions:
+> - Utiliser l'extension vs-code `live-server` [Lien vers la boutique](https://marketplace.visualstudio.com/items?itemName=ms-vscode.live-server)
+> - Utiliser un server python avec la commande (lancé dans le répertoire du server) `python3 -m http.server`.
 
 ## Cahier des charges:
 >Faire un outil de tirage au sort qu’on puisse projeter pour la tomPotla (il s’agit de la tombola organisée pendant le pot Télespoir du 19/01)
@@ -22,7 +24,7 @@ La colonne vainqueur sera complété par le script avec les noms des participant
 ## TODO
 - [x] crée les bases du site
 - [x] définir une animation de victoire simple
-- [ ] mettre des boutons pour relancer un lot (change le vainqueur)
+- [x] mettre des boutons pour relancer un lot (change le vainqueur)
 - [ ] mettre des boutons pour relancer une animation (ne change pas le vainqueur)
 - [ ] mettre des boutons pour passer au lot suivant
 - [ ] faire un recap des vainqueurs à la fin
