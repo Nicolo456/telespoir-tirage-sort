@@ -2,8 +2,8 @@
 
 > [!TIP]
 > Pour l'utiliser, il faut lancer un server local (index.html comme main). Pour ca, 2 propositions:
-> - Utiliser l'extension vs-code `live-server` [Lien vers la boutique](https://marketplace.visualstudio.com/items?itemName=ms-vscode.live-server)
-> - Utiliser un server python avec la commande (lancé dans le répertoire du server) `python3 -m http.server`.
+> - Utiliser l'extension vs-code `live-server` [Lien vers la boutique](https://marketplace.visualstudio.com/items?itemName=ms-vscode.live-server). Le site est ensuite accessible à l'url `http://127.0.0.1:3000/index.html`.
+> - Utiliser un server python avec la commande (lancé dans le répertoire du server) `python3 -m http.server`. Le site est ensuite accessible à l'url `localhost:8000`.
 
 ## Cahier des charges:
 >Faire un outil de tirage au sort qu’on puisse projeter pour la tomPotla (il s’agit de la tombola organisée pendant le pot Télespoir du 19/01)
