@@ -24,7 +24,7 @@ export function run_wheel() {
         if (canSpin) {
             //confetti_wheel(7000,1000)
             canSpin = false; // result le remet opérationnel
-            spinValue += Math.ceil(1000 + ((Math.random()-0.2) * 720));
+            spinValue += Math.ceil(1000 + ((Math.random()) * 1080));
 
             anime({
             targets: "#wheel",
@@ -117,4 +117,11 @@ function calc_clip_path(nb_slots, rapport_utilisation_angle){
 
 function calc_angle(nb_slots) {
     return 2* Math.PI/nb_slots;
+}
+
+export function change_wheel_name() {
+    let texts = document.querySelectorAll(".wheelContainer #wheel .slot span");
+    for (let i = 0; i < texts.length; i++) {
+        texts[i].innerHTML = participants[Math.floor(Math.random() * participants.length)];
+    }
 }

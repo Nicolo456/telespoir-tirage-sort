@@ -1,5 +1,5 @@
 import {run_homeScreen, quit_homeScreen} from "./home_screen.js";
-import {run_wheel} from "./wheel.js";
+import {run_wheel,change_wheel_name} from "./wheel.js";
 import { quit_result } from "./result.js";
 
 let state = document.querySelector('#state')
@@ -21,6 +21,7 @@ let bouton_relauch = document.querySelector(".resultContainer #winner #btnContin
 bouton_relauch.addEventListener("click", function() {
     if (state.value == "result") {
         quit_result();
+        change_wheel_name();
         state.value = "wheel";
     }
 });

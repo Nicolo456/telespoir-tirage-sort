@@ -47,7 +47,7 @@ export function show_result(winnerName) {
     let btnContinue = document.querySelector("#btnContinue");
     let text = document.createElement("p");
     text.classList.add("resultText");
-    text.innerHTML = `Le gagnant est ${winnerName}! <br> Bravo et merci!`;
+    text.innerHTML = `Bravo à ${winnerName}! <br> Et merci à tous d'avoir participé!`;
     document.querySelector(".resultContainer #winner").insertBefore(text, btnContinue);
 
     anime({

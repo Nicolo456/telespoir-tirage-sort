@@ -20,7 +20,7 @@
     z-index: 300;
 }
 
-.resultContainer #winner p {
+.resultContainer #winner .resultText {
     position: relative;
     font-size: 6vw;
     font-weight: 700;
