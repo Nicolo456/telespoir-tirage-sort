@@ -29,7 +29,7 @@ export function run_wheel() {
             anime({
             targets: "#wheel",
             rotate: `${spinValue}deg`,
-            duration: 1, // durée de l'animation en millisecondes
+            duration: 10000, // durée de l'animation en millisecondes
             easing: 'cubicBezier(0.250, -0.135, 0.395, 1.085)',
             complete: function(anim) {
                 winner = get_winner(spinValue, nb_slots);
