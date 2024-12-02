@@ -1,0 +1,31 @@
+{
+	"name": "telespoir-tirage-sort",
+	"version": "1.0.0",
+	"description": "Un site pour la tombola télécom espoir",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"start": "npm run build && (node server.cjs & http-server .)",
+		"build": "babel src --out-dir dist"
+	},
+	"author": "Nicodème Gorge",
+	"license": "ISC",
+	"devDependencies": {
+		"@babel/cli": "^7.25.9",
+		"@babel/core": "^7.26.0",
+		"@babel/preset-env": "^7.26.0",
+		"@babel/preset-react": "^7.25.9",
+		"@babel/preset-typescript": "^7.26.0",
+		"http-server": "^14.1.1"
+	},
+	"dependencies": {
+		"@tsparticles/confetti": "^3.7.1",
+		"@tsparticles/preset-confetti": "^3.2.0",
+		"animejs": "^3.2.2",
+		"cors": "^2.8.5",
+		"express": "^4.21.1",
+		"react": "^18.3.1",
+		"react-dom": "^18.3.1",
+		"tsparticles": "^3.7.1"
+	},
+	"type": "module"
+}
