@@ -1,5 +1,5 @@
 import { confetti_result } from "./confetti.js";
-import anime from '../../node_modules/animejs/lib/anime.es.js';
+import anime from 'animejs';
 
 export function show_result(winnerName) {
     const nb_leafs = 60;
@@ -26,7 +26,7 @@ export function show_result(winnerName) {
 
     for (let i = 0; i < nb_leafs; i++) {
         leaf = document.createElement("img");
-        leaf.src = 'images/tropical_leaf.png';
+        leaf.src = 'public/images/tropical_leaf.png';
 
         // Obtenez la largeur et la hauteur de l'image
         var largeurImage = leaf.width;

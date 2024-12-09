@@ -1,0 +1,77 @@
+.homeScreen {
+    position: absolute;
+    display: flex;
+    justify-content: center; /* Centrer horizontalement */
+    align-items: center; /* Centrer verticalement */
+    height: 100vh; /* Ajustez la hauteur selon vos besoins */
+}
+
+.homeScreenContainer {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    align-items: center; /* Centrer verticalement */
+    gap: 7vw;
+    margin: 0 15vw 0 15vw;
+}
+
+h1 {
+    position: static;
+    font-size: 8vw;
+    text-align: center;
+    white-space: nowrap;
+    z-index: 1;
+    color: #273071;
+    text-shadow: -3px 5px rgba(127,147,182,0.3);
+}
+
+#logo {
+    min-width: 100px; /* Largeur minimale de 200 pixels */
+    width: 100%; /* prendra la largeur complète du conteneur parent */
+    height: auto; /* ajuste automatiquement la hauteur pour préserver les proportions */
+    z-index: 1;
+}
+
+.continue {
+    position: absolute; /* Positionnement absolu */
+    top: 90%; /* Position verticale */
+    left: 50%; /* Position horizontale */
+    transform: translate(-50%, -50%); /* Décalage de moitié de la taille du div*/
+    width: 9vw;
+    height: auto;
+    rotate: 250;
+    max-width: 20%; /* Pour s'assurer que l'image ne dépasse pas la taille du conteneur */
+    max-height: 20%;
+}
+
+.continue #leaf {
+    position: absolute;
+    top: 50%; /* Centrage vertical */
+    left: 50%; /* Centrage horizontal */
+    width: 100%;
+    height: auto;
+    transform-origin: center center; /* Centre de rotation */
+    transform: translate(-50%, -50%) rotate(130deg); /* Décalage de moitié de la taille du bouton */
+    z-index: 1; /* Empilement en arrière par rapport à element1 */
+}
+
+.continue #btnStart {
+    position: absolute;
+    top: 50%; /* Centrage vertical */
+    left: 50%; /* Centrage horizontal */
+    width: auto;
+    transform: translate(-50%, -50%); /* Décalage de moitié de la taille du bouton */
+    z-index: 2;
+    background-color: #273071; /* Couleur de fond */
+    color: white; /* Couleur du texte */
+    padding: 10px 20px; /* Espacement interne */
+    border: none; /* Retirer la bordure */
+    border-radius: 5px; /* Coins arrondis */
+    font-size: 16px; /* Taille de police */
+    cursor: pointer; /* Curseur au survol */
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Ombre */
+    transition: background-color 0.1s ease; /* Animation au survol */
+}
+
+.continue #btnStart:hover {
+    background-color: #8092b8; /* Nouvelle couleur de fond au survol */
+}

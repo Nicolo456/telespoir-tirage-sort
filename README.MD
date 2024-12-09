@@ -1,38 +1,34 @@
 # Tirage au sort
 
-> [!TIP]
-> Pour l'utiliser, il faut lancer un server local (index.html comme main). Pour ca, 2 propositions:
->
-> - Utiliser l'extension vs-code `live-server` [Lien vers la boutique](https://marketplace.visualstudio.com/items?itemName=ms-vscode.live-server). Le site est ensuite accessible à l'url `http://127.0.0.1:3000/index.html`.
-> - Utiliser un server python avec la commande (lancé dans le répertoire du server) `python3 -m http.server`. Le site est ensuite accessible à l'url `localhost:8000`.
+Bienvenue sur le dépot du site utilisé pour le tirage au sort téléspoir. En cas de problème veuillez contacter l'administrateur de téléspoir. Site crée originalement par Nicodème Gorge de la promo 2026.
 
-> [!WARNING]
-> Ne pas oublier de vider le cacher de la page pour actualiser les participants.
+## Logiciel nécessaire
 
-## Cahier des charges:
+- Git (Gestionnaire de version)
+- npm (Gestionnaire de package pour le web)
 
-> Faire un outil de tirage au sort qu’on puisse projeter pour la tomPotla (il s’agit de la tombola organisée pendant le pot Télespoir du 19/01)
->
-> L’entrée se fera à l’aide d’un sheet (excel, csv) en effet, ils achèteront leurs billet sur le site du BDE, ou une cagnotte de l’asso (Lydia)
->
-> on souhaite gérer surtout la partie tirage au sort avec animation, sachant qu’il peut y avoir plusieurs vainqueurs et ça serait bien de les garder affichés tout en tirant les uns après les autres
+## Utilisation
 
-## Description pratique
+### Démarrage Rapide
 
-Il faut enregistrer les participants et les lots dans le fichier data.js (c'est pas pratique oui mais j'ai pas réussi autrement).
+- Cloner le dépot `git clone https://github.com/Nicolo456/telespoir-tirage-sort.git`
+- Déplacer vous dans le dossier
+- Installer les dépendances `npm i`
+- Changer le nom des participants dans le fichier `data.js` qui se trouve dans le dossier `public`.
+- Lancer le site web `npm run start`.
 
-- La liste partcipants accepte les noms des partcipants
-- Pour les lots on a: nom du lot, nombre disponible, importance du lot, chemin vers l'image, vainqueurs
+### Configuration en détail
 
-L'importance du lot définit quelle sera le niveau d'animation. Un petit lot (3) ne va pas provoquer la même attente qu'un grand lot (1). Pour lancer le lot 1: gros bouton rouge
-La colonne vainqueur sera complété par le script avec les noms des participants qui ont gagné le lot.
+- Cloner le dépot `git clone https://github.com/Nicolo456/telespoir-tirage-sort.git`
+- Déplacer vous dans le dossier
+- Installer les dépendances `npm i`
+- Changer le nom des participants dans le fichier `data_participants.js` qui se trouve dans le dossier `public/config`. Pour cela 2 possibilités:
+  - Soit en changeant manuellement
+  - Soit en modifiant le script du dossier `script` et ajoutant le `.csv` avec les données des participants. On execute le script `script.py` qui donne un nouveau fichier `data_participants.js` qu'on pourra placer dans `public/config` à la place de l'ancien.
+- Changer l'ordre des chansons dans `public/config/data_songs.js`. Les chansons se jouent dans l'ordre d'apparition dans le vecteur.
+- Changer le comportement du tirage dans le fichier `public/config/settings.js`.
+- Lancer le site web `npm run start`.
 
-## TODO
+## Resultat
 
-- [x] crée les bases du site
-- [x] définir une animation de victoire simple
-- [x] mettre des boutons pour relancer un lot (change le vainqueur)
-- [ ] mettre des boutons pour relancer une animation (ne change pas le vainqueur)
-- [ ] mettre des boutons pour passer au lot suivant
-- [ ] faire un recap des vainqueurs à la fin
-- [ ] définir une animation par importance du lot
+Un fichier contenant tous les vainqueurs sera crée dans le dossier `logs`.

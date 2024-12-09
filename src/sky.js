@@ -1,7 +1,7 @@
 // Twinkling Night Sky by Sharna
-import React from '../node_modules/react';
-import ReactDOM from '../node_modules/react-dom';
-import anime from '../../node_modules/animejs/lib/anime.es.js';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import anime from 'animejs';
 
 class StarrySky extends React.Component {
 state = {

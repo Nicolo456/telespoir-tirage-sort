@@ -1,10 +1,11 @@
-import {confetti_wheel} from "./confetti.js";
-import { participants } from "../data.js";
+import { data_participants } from "data_participants";
 import { show_result } from "./result.js";
 import { get_time_drop, sleep } from "./script.js";
-import anime from '../../node_modules/animejs/lib/anime.es.js';
+import anime from 'animejs';
+import { removeBehavior } from "settings";
 
 let state = document.querySelector('#state')
+let current_participants = get_participants(data_participants)
 
 // EXPLANATION
 
@@ -36,7 +37,7 @@ export function run_wheel() {
             audio.currentTime = get_time_drop() - duration/1000;
             audio.volume = 0;
             audio.play();
-            fadeIn(3000, audio);
+            fadeIn(4000, audio);
 
             anime({
             translateZ: 0,
@@ -44,17 +45,9 @@ export function run_wheel() {
             rotate: `${spinValue}deg`,
             duration: duration, // durée de l'animation en millisecondes
             easing: 'cubicBezier(0.250, -0.135, 0.395, 1.085)',
-            // begin: function(anim) {
-            //     confetti_wheel(duration)
-            // },
-            // update: function(anim) {
-            //     current_angle = get_current_abs_angle(wheel)
-            //     spin_speed = get_angle_speed(current_angle, predec_angle)
-            //     predec_angle = current_angle
-            //     confetti_wheel(spin_speed)
-            // },
             complete: function(anim) {
                 winner = get_winner(spinValue, nb_slots);
+                handle_remove_participants(current_participants, winner);
                 canSpin = true;
                 state.value = "result";
                 console.log(winner);
@@ -74,7 +67,9 @@ export function run_wheel() {
     const wheelContainer_height = 0.80 * widthViewport;
     const wheelContainer_width = 0.80 * widthViewport;
 
-    make_wheel_slot(participants,rapport_utilisation_angle, nb_slots);
+
+
+    make_wheel_slot(current_participants,rapport_utilisation_angle, nb_slots);
 
     var basicTimeline = anime.timeline();
 
@@ -114,7 +109,7 @@ function fadeOut(fadeDuration = 2000, audio) {
     }, interval);
 }
 
-function fadeIn(fadeDuration = 2000, audio) {
+function fadeIn(fadeDuration = 3000, audio) {
     const interval = 50; // Interval in milliseconds
     const step = ((1-audio.volume) / (fadeDuration / interval)); // Calculate step size
 
@@ -155,7 +150,7 @@ function get_winner(value, nb_slots) {
     return winner_span.innerText;
 }
 
-function make_wheel_slot(participant, rapport_utilisation_angle, nb_slots) {
+function make_wheel_slot(current_participants, rapport_utilisation_angle, nb_slots) {
     const slot_angle = calc_angle(nb_slots) * 180 / Math.PI; // slot angle in degree
     const colors = ['#db7093', '#20b2aa', '#d63e92', '#daa520' , '#dd340f',' #ff7f50' , '#3cb351' , '#4169e1']
     //colors = ['#349218','#62b62d','#273071','#d0cfcd','#7f93b6','#a5a4a0','#ffffff']
@@ -174,7 +169,7 @@ function make_wheel_slot(participant, rapport_utilisation_angle, nb_slots) {
         slot.style.background = `${clr}`;
 
         text = document.createElement("span");
-        text.innerHTML = participant[Math.floor(Math.random() * participant.length)]; // A modifier pour aléatoire
+        text.innerHTML = current_participants[Math.floor(Math.random() * current_participants.length)]; // A modifier pour aléatoire
         slot.appendChild(text);
 
         // ajout dans le DOM
@@ -191,9 +186,42 @@ function calc_angle(nb_slots) {
     return 2* Math.PI/nb_slots;
 }
 
+function get_participants(data_participants) {
+    let res = []
+    data_participants.forEach(data_participant => {
+        for (let i = 0; i < data_participant.times; i++) {
+            res.push(data_participant.name);
+        }
+    });
+    return res;
+}
+
+function handle_remove_participants(current_participants, winner) {
+    if (removeBehavior == "no-remove") {
+        console.log("[INFO]: removeBehavior is set to no-remove, the winner can win multiple times")
+    } else if (removeBehavior == "remove-all") {
+        current_participants = remove_participants(current_participants, winner, true) // Permet de retirer le vainqueur pour pas qu'il gagne plusieurs fois, si remove_participants est True alors on enlève tous ces tickets.
+        console.log("[INFO]: removeBehavior is set to remove-all, the winner can win only once, all his tickets are removed")
+    } else if (removeBehavior == "remove-one") {
+        current_participants = remove_participants(current_participants, winner, false) // Permet de retirer le vainqueur pour pas qu'il gagne plusieurs fois, si remove_participants est True alors on enlève tous ces tickets.
+        console.log("[INFO]: removeBehavior is set to remove-one, the winner can win for each ticket he buyed")
+    } else {
+        console.log("[WARINING]: removeBehavior is not set, the winner can win multiple times. Please set it to 'no-remove', 'remove-all' or 'remove-one'")
+    }
+}
+
+function remove_participants(current_participants, participant2remove, remove_duplicate=true) {
+    if (remove_duplicate) {
+        return current_participants.filter(participant => participant !== participant2remove);
+    } else {
+        return current_participants.remove(participant2remove);
+    }
+    
+}
+
 export function change_wheel_name() {
     let texts = document.querySelectorAll(".wheelContainer #wheel .slot span");
     for (let i = 0; i < texts.length; i++) {
-        texts[i].innerHTML = participants[Math.floor(Math.random() * participants.length)];
+        texts[i].innerHTML = current_participants[Math.floor(Math.random() * current_participants.length)];
     }
 }

@@ -1,9 +1,9 @@
 import re
 import csv
 PATH_CSV = "collect.csv"
-PATH_res = "data.js"
+PATH_res = "data_participants.js"
 
-res_d = "export let participants = ["
+res_d = "export let data_participants = ["
 res_f = "];"
 
 
@@ -35,8 +35,10 @@ with open(PATH_res, mode='w') as js_file:
     for item in data:
         nb_tombola = int(contains_not_contains_de_kebab(
             item[2])) + extract_number(item[3])
-        for i in range(nb_tombola):
-            js_file.write(f'"{item[1] + " "+item[0]}",')
+
+        data_participant = f'{{name:"{
+            item[1] + " "+item[0]}", times:{nb_tombola}}},\n'+'\t'*8
+        js_file.write(data_participant)
     js_file.write(res_f)
 
 print("Les données ont été écrites dans le fichier .js.")

@@ -1,4 +1,3 @@
-import {sleep} from "./script.js";
 let state = document.querySelector('#state')
 
 //Load the confetti preset

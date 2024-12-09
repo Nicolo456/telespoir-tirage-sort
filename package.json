@@ -4,8 +4,8 @@
 	"description": "Un site pour la tombola télécom espoir",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"start": "npm run build && (node server.cjs & http-server .)",
-		"build": "babel src --out-dir dist"
+		"start": "npm run build && node server.cjs",
+		"build": "babel src --out-dir public/dist"
 	},
 	"author": "Nicodème Gorge",
 	"license": "ISC",
@@ -14,17 +14,17 @@
 		"@babel/core": "^7.26.0",
 		"@babel/preset-env": "^7.26.0",
 		"@babel/preset-react": "^7.25.9",
-		"@babel/preset-typescript": "^7.26.0",
-		"http-server": "^14.1.1"
+		"@babel/preset-typescript": "^7.26.0"
 	},
 	"dependencies": {
 		"@tsparticles/confetti": "^3.7.1",
 		"@tsparticles/preset-confetti": "^3.2.0",
 		"animejs": "^3.2.2",
-		"cors": "^2.8.5",
 		"express": "^4.21.1",
+		"nocache": "^4.0.0",
 		"react": "^18.3.1",
 		"react-dom": "^18.3.1",
+		"react-es6": "^1.0.2",
 		"tsparticles": "^3.7.1"
 	},
 	"type": "module"

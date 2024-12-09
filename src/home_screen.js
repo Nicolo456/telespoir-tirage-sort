@@ -1,5 +1,5 @@
 import {confetti_homeScreen} from "./confetti.js";
-import anime from '../../node_modules/animejs/lib/anime.es.js';
+import anime from 'animejs';
 
 export function run_homeScreen() {
     confetti_homeScreen()

@@ -4,11 +4,11 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Tirage au sort</title>
-		<link rel="stylesheet" href="css/styles.css" />
-		<link rel="icon" href="images/logo-telespoir.ico" type="image/x-icon" />
+		<link rel="stylesheet" href="public/css/styles.css" />
+		<link rel="icon" href="public/images/logo-telespoir.ico" type="image/x-icon" />
 		<!-- favicon -->
 		<div id="state" value=""></div>
-		<base href="/" />
+		<script src="./public/importmap.js"></script>
 	</head>
 	<body>
 		<div id="root"></div>
@@ -16,12 +16,12 @@
 		<div class="homeScreen">
 			<div class="homeScreenContainer">
 				<h1 id="title">Tirage au sort</h1>
-				<img src="images/logo-telespoir.png" alt="logo de l'association Téléspoir" id="logo" />
+				<img src="public/images/logo-telespoir.png" alt="logo de l'association Téléspoir" id="logo" />
 			</div>
 
 			<div class="continue">
 				<button id="btnStart">Commencer</button>
-				<img src="images/tropical_leaf.png" alt="feuille tropical" id="leaf" />
+				<img src="public/images/tropical_leaf.png" alt="feuille tropical" id="leaf" />
 			</div>
 		</div>
 
@@ -34,7 +34,7 @@
 			<div id="winner"><button id="btnContinue">Relancer</button></div>
 		</div>
 		<script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3.0.3/tsparticles.confetti.bundle.min.js"></script>
-		<script type="module" src="dist/sky.js"></script>
-		<script type="module" src="dist/script.js"></script>
+		<script type="module" src="public/dist/sky.js"></script>
+		<script type="module" src="public/dist/script.js"></script>
 	</body>
 </html>
