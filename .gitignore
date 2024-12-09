@@ -4,3 +4,4 @@ dist/
 result.txt
 .venv/
 logs/
+script/*.csv

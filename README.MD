@@ -32,3 +32,9 @@ Bienvenue sur le dépot du site utilisé pour le tirage au sort téléspoir. En 
 ## Resultat
 
 Un fichier contenant tous les vainqueurs sera crée dans le dossier `logs`.
+
+## Explication du code
+
+Le server est généré par express dans `server.cjs`. Il génére une api pour recevoir les demande d'enregistrement du nom de vainqueur dans les logs.
+Le serveur lance le fichier `index.html` qui utilise les ressources css/images/sounds/javascript du dossier public.
+Pour lire le code javascript non compilé par `babel` il faut lire les fichiers du dossier `src`.
