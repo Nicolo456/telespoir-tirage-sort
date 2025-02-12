@@ -14,7 +14,7 @@ Bienvenue sur le dépot du site utilisé pour le tirage au sort téléspoir. En 
 - Cloner le dépot `git clone https://github.com/Nicolo456/telespoir-tirage-sort.git`
 - Déplacer vous dans le dossier
 - Installer les dépendances `npm i`
-- Changer le nom des participants dans le fichier `data.js` qui se trouve dans le dossier `public`.
+- Changer le nom des participants dans le fichier `data_participants.js` qui se trouve dans le dossier `public/config`.
 - Lancer le site web `npm run start`.
 
 ### Configuration en détail

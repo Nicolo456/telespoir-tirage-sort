@@ -47,7 +47,7 @@ export function run_wheel() {
             easing: 'cubicBezier(0.250, -0.135, 0.395, 1.085)',
             complete: function(anim) {
                 winner = get_winner(spinValue, nb_slots);
-                handle_remove_participants(current_participants, winner);
+                current_participants = handle_remove_participants(current_participants, winner);
                 canSpin = true;
                 state.value = "result";
                 console.log(winner);
@@ -169,7 +169,7 @@ function make_wheel_slot(current_participants, rapport_utilisation_angle, nb_slo
         slot.style.background = `${clr}`;
 
         text = document.createElement("span");
-        text.innerHTML = current_participants[Math.floor(Math.random() * current_participants.length)]; // A modifier pour aléatoire
+        text.innerHTML = current_participants[Math.floor(Math.random() * current_participants.length)];
         slot.appendChild(text);
 
         // ajout dans le DOM
@@ -199,14 +199,18 @@ function get_participants(data_participants) {
 function handle_remove_participants(current_participants, winner) {
     if (removeBehavior == "no-remove") {
         console.log("[INFO]: removeBehavior is set to no-remove, the winner can win multiple times")
+        return current_participants;
     } else if (removeBehavior == "remove-all") {
         current_participants = remove_participants(current_participants, winner, true) // Permet de retirer le vainqueur pour pas qu'il gagne plusieurs fois, si remove_participants est True alors on enlève tous ces tickets.
         console.log("[INFO]: removeBehavior is set to remove-all, the winner can win only once, all his tickets are removed")
+        return current_participants;
     } else if (removeBehavior == "remove-one") {
         current_participants = remove_participants(current_participants, winner, false) // Permet de retirer le vainqueur pour pas qu'il gagne plusieurs fois, si remove_participants est True alors on enlève tous ces tickets.
         console.log("[INFO]: removeBehavior is set to remove-one, the winner can win for each ticket he buyed")
+        return current_participants;
     } else {
-        console.log("[WARINING]: removeBehavior is not set, the winner can win multiple times. Please set it to 'no-remove', 'remove-all' or 'remove-one'")
+        console.log("[WARNING]: removeBehavior is not set, the winner can win multiple times. Please set it to 'no-remove', 'remove-all' or 'remove-one'")
+        return current_participants;
     }
 }
 
@@ -214,9 +218,12 @@ function remove_participants(current_participants, participant2remove, remove_du
     if (remove_duplicate) {
         return current_participants.filter(participant => participant !== participant2remove);
     } else {
-        return current_participants.remove(participant2remove);
+        const index = current_participants.indexOf(participant2remove);
+        if (index > -1) {
+            current_participants.splice(index, 1);
+        }
+        return current_participants;
     }
-    
 }
 
 export function change_wheel_name() {

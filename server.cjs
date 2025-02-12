@@ -22,6 +22,9 @@ app.post('/save', (req, res) => { // Route pour enregistrer le vainqu
     const now = new Date()
     lineStr = '[Winner ' + now.toLocaleString() + '] ' + variable + '\n';
 
+    if (!fs.existsSync(LOG_PATH)) {
+        fs.mkdirSync(LOG_PATH, { recursive: true });
+    }
     // Écrit la variable dans un fichier
     fs.appendFile(LOG_PATH+"result_"+START_TIME+'.txt', lineStr, (err) => {
         if (err) {

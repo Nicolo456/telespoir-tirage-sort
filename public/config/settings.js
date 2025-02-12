@@ -1,4 +1,4 @@
-export let removeBehavior = "no-remove"; 
+export let removeBehavior = "remove-one"; 
 // Please choose between "no-remove", "remove-all" or "remove-one". Explanation
 // - "no-remove": the winner can win multiple times
 // - "remove-all": the winner can win only once, all his tickets are removed
