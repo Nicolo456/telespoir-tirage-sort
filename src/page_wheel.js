@@ -1,8 +1,11 @@
 import { data_participants } from "data_participants";
-import { show_result } from "./result.js";
-import { get_time_drop, sleep } from "./script.js";
+import { show_result } from "./page_result.js";
+import { sleep } from "./funcs.js";
 import anime from 'animejs';
 import { removeBehavior } from "settings";
+import { fadeIn, fadeOut, get_time_drop } from "./music_handler.js";
+import { songs_id } from "./main.js"
+import {data_songs} from "data_songs";
 
 let state = document.querySelector('#state')
 let current_participants = get_participants(data_participants)
@@ -13,28 +16,34 @@ let current_participants = get_participants(data_participants)
 // Pour chaque emplacement on prend un participant au hasard dans la liste des participants
 // Lorsque ca s'arrète on selectionne le participant et on l'affiche
 
-export function run_wheel() {
+export function show_wheel() {
     let wheelContainer = document.querySelector(".wheelContainer");
-    let wheel = document.querySelector(".wheelContainer #wheel");
     let spinBtn = document.querySelector(".wheelContainer #spinBtn");
     let spinValue = 0;
-    let canSpin = false;
     let winner;
     const nb_slots = 32;
-    let spin_speed =  0;
-    let current_angle = 0;
-    let predec_angle = 0;
 
     spinBtn.onclick = function() {
-        console.log("essaye de tourner la roue")
-        if (canSpin) {
-            canSpin = false; // result le remet opérationnel
+        spinWheel();
+    }
+
+    
+    document.addEventListener('keydown', (event) => {
+        if (event.code === 'Space') {
+            spinWheel();
+        }
+    });
+
+    function spinWheel() {
+        console.log("[INFO] Essaye de tourner la roue. state.value = " + state.value + " (have to be wheel_idle to spin)");
+        if (state.value == "wheel_idle") {
+            state.value = "wheel_spinning";
             const duration = 20000; // durée de l'animation en millisecondes
             spinValue += Math.ceil(6500 + ((Math.random()) * 1080));
 
             // On joue la musique
             let audio = document.querySelector("#song");
-            audio.currentTime = get_time_drop() - duration/1000;
+            audio.currentTime = get_time_drop(data_songs, songs_id) - duration/1000;
             audio.volume = 0;
             audio.play();
             fadeIn(4000, audio);
@@ -48,14 +57,13 @@ export function run_wheel() {
             complete: function(anim) {
                 winner = get_winner(spinValue, nb_slots);
                 current_participants = handle_remove_participants(current_participants, winner);
-                canSpin = true;
                 state.value = "result";
                 console.log(winner);
                 show_result(winner);
                 sleep(6000).then(() => {
-                    fadeOut(2000, audio)
+                    fadeOut(2000, audio);
                 });
-            }
+                }
             });
         }
     }
@@ -66,8 +74,6 @@ export function run_wheel() {
     const widthViewport = window.innerWidth;
     const wheelContainer_height = 0.80 * widthViewport;
     const wheelContainer_width = 0.80 * widthViewport;
-
-
 
     make_wheel_slot(current_participants,rapport_utilisation_angle, nb_slots);
 
@@ -89,58 +95,8 @@ export function run_wheel() {
         targets: ".wheelContainer",
         translateY: [`${heightViewport}px`,'0'],
         duration: 2000, // durée de l'animation en millisecondes
-        easing: 'easeOutElastic(0.5, 1)',
-        complete: function(anim) {
-            canSpin = true;
-        }
+        easing: 'easeOutElastic(0.5, 1)'
      });
-}
-
-function fadeOut(fadeDuration = 2000, audio) {
-    const interval = 50; // Interval in milliseconds
-    const step = (audio.volume / (fadeDuration / interval)); // Calculate step size
-
-    const fadeAudio = setInterval(() => {
-        if (audio.volume > 0) {
-            audio.volume = Math.max(0, audio.volume - step); // Decrease volume
-        } else {
-            clearInterval(fadeAudio); // Stop interval when volume is zero
-        }
-    }, interval);
-}
-
-function fadeIn(fadeDuration = 3000, audio) {
-    const interval = 50; // Interval in milliseconds
-    const step = ((1-audio.volume) / (fadeDuration / interval)); // Calculate step size
-
-    const fadeAudio = setInterval(() => {
-        if (audio.volume < 1) {
-            audio.volume = Math.min(1, audio.volume + step); // Increase volume
-        } else {
-            clearInterval(fadeAudio); // Stop interval when volume is zero
-        }
-    }, interval);
-}
-
-function get_current_abs_angle(element) {
-    // Get the current transform value
-    const transform = window.getComputedStyle(element).transform;
-
-    if (transform !== 'none') {
-        const values = transform.match(/matrix\(([^)]+)\)/)[1].split(', ');
-        const a = parseFloat(values[0]);
-        const b = parseFloat(values[1]);
-
-        // Calculate the current rotation angle in degrees
-        const angle = Math.round(Math.atan2(b, a) * (180 / Math.PI));
-        return Math.abs(angle)
-    } else {
-        return 0;
-    }   
-}
-function get_angle_speed(current_angle, previous_angle) {
-    const angle_speed = Math.abs(current_angle - previous_angle);
-    return angle_speed;
 }
 
 function get_winner(value, nb_slots) {

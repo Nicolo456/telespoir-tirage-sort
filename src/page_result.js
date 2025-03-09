@@ -1,7 +1,10 @@
 import { confetti_result } from "./confetti.js";
 import anime from 'animejs';
 
+let state = document.querySelector('#state')
+
 export function show_result(winnerName) {
+    state.value = "transition";
     const nb_leafs = 60;
     const center = [window.innerWidth/2,window.innerHeight/2]
     let leaf;
@@ -72,11 +75,16 @@ export function show_result(winnerName) {
         translateY: [`-50px`,'0px'],
         duration: 1000, // durée de l'animation en millisecondes
         delay:1000,
-        easing: 'easeOutQuad'
+        easing: 'easeOutQuad',
+        complete: function(anim) {
+            state.value = "result";
+        }
     })
+
 }
 
 export function quit_result() {
+    state.value = "transition";
     var otherFinish = false;
     anime({
         targets: '.leaf',
@@ -92,6 +100,7 @@ export function quit_result() {
             if (otherFinish) {
                 document.querySelector('.resultContainer').style.display = 'none';
                 otherFinish = false; // Reset pour prochaine fois
+                state.value = "wheel_idle";
             } else {
                 otherFinish = true;
             }
@@ -109,7 +118,7 @@ export function quit_result() {
             if (otherFinish) {
                 document.querySelector('.resultContainer').style.display = 'none';
                 otherFinish = false; // Reset pour prochaine fois
-                canSpin = true;
+                state.value = "wheel_idle";
             } else {
                 otherFinish = true;
             }
